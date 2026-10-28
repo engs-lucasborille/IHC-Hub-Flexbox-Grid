@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aprenda a dividir layouts em linhas e colunas usando CSS Grid." />
+  <title>Grid - Aula de CSS</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="grid.css">
+</head>
+<body>
+  <header>
+    <h1>CSS Grid: layouts em duas dimensões</h1>
+    <a href="index.html">Voltar ao Hub</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>O que é CSS Grid?</h2>
+      <p>
+        CSS Grid é um sistema de layout bidimensional: permite organizar elementos em
+        <strong>linhas e colunas ao mesmo tempo</strong>. O elemento pai define a grade e seus
+        filhos diretos podem ocupar uma ou mais células.
+      </p>
+      <p>
+        Ative o Grid no contêiner com <code>display: grid;</code>. Em seguida, defina suas colunas
+        e linhas com <code>grid-template-columns</code> e <code>grid-template-rows</code>.
+      </p>
+      <pre><code>.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Colunas, linhas e a unidade fr</h2>
+      <p>
+        A unidade <code>fr</code> representa uma fração do espaço disponível. A função
+        <code>repeat()</code> evita repetir valores. A demonstração abaixo cria três colunas iguais
+        e duas linhas; o Grid posiciona os itens automaticamente.
+      </p>
+      <div class="grid-demo basic-grid" aria-label="Grade com três colunas e duas linhas">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+      </div>
+      <pre><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 12px;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Grades responsivas</h2>
+      <p>
+        Combine <code>repeat()</code>, <code>auto-fit</code> e <code>minmax()</code> para criar
+        colunas que se adaptam ao espaço disponível. Cada coluna terá pelo menos 120px e poderá
+        crescer para ocupar o espaço restante.
+      </p>
+      <div class="grid-demo responsive-grid" aria-label="Grade de cartões responsiva">
+        <div class="grid-item">Cartão 1</div>
+        <div class="grid-item">Cartão 2</div>
+        <div class="grid-item">Cartão 3</div>
+        <div class="grid-item">Cartão 4</div>
+      </div>
+      <pre><code>.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Posicionando e alinhando itens</h2>
+      <p>
+        As linhas da grade podem ser usadas para definir onde um item começa e termina.
+        <code>grid-column</code> controla a posição entre colunas e <code>grid-row</code> entre
+        linhas. O item em destaque a seguir ocupa duas colunas.
+      </p>
+      <div class="grid-demo placement-grid" aria-label="Grade com um item ocupando duas colunas">
+        <div class="grid-item featured">Destaque: ocupa duas colunas</div>
+        <div class="grid-item">Item 2</div>
+        <div class="grid-item">Item 3</div>
+      </div>
+      <pre><code>.destaque {
+  grid-column: span 2;
+}</code></pre>
+      <p>
+        Para alinhar o conteúdo das células, use <code>justify-items</code> (horizontalmente) e
+        <code>align-items</code> (verticalmente). Para alinhar toda a grade dentro do contêiner,
+        use <code>justify-content</code> e <code>align-content</code>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Áreas nomeadas</h2>
+      <p>
+        <code>grid-template-areas</code> permite nomear regiões da grade e atribuí-las aos itens
+        com <code>grid-area</code>. Esse recurso ajuda a visualizar e reorganizar estruturas de
+        página, como cabeçalho, menu, conteúdo principal e rodapé.
+      </p>
+      <pre><code>.pagina {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "cabecalho cabecalho"
+    "menu      conteudo"
+    "rodape    rodape";
+  gap: 12px;
+}
+
+.cabecalho { grid-area: cabecalho; }
+.menu      { grid-area: menu; }
+.conteudo  { grid-area: conteudo; }
+.rodape    { grid-area: rodape; }</code></pre>
+    </section>
+
+    <section>
+      <h2>Quando usar Grid?</h2>
+      <p>
+        Grid é indicado para estruturas bidimensionais, como a composição de uma página, galerias
+        e painéis com linhas e colunas relacionadas. Para alinhar um grupo de elementos em uma
+        única direção, Flexbox pode ser mais simples. Os dois recursos também podem ser combinados.
+      </p>
+    </section>
+
+    <section>
+      <h2>Atividade prática</h2>
+      <p>Monte uma galeria de cartões e pratique:</p>
+      <ul>
+        <li>criar três colunas com <code>repeat(3, 1fr)</code>;</li>
+        <li>adicionar espaçamento entre as células com <code>gap</code>;</li>
+        <li>fazer um cartão ocupar duas colunas com <code>grid-column: span 2</code>;</li>
+        <li>adaptar a quantidade de colunas usando <code>auto-fit</code> e <code>minmax()</code>.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Material de apoio para estudar HTML e CSS.</p>
+  </footer>
+</body>
+</html>
